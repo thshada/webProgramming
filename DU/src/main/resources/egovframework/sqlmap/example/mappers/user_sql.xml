@@ -10,6 +10,7 @@
 		<result property="job"			column="job"/>
 		<result property="phone"		column="phone"/>
 		<result property="email"		column="email"/>
+		<result property="deptNm"       column="dept_nm"/>
 	</resultMap>
 	
 	<select id="selectPwd" parameterType="String" resultType="String">
@@ -26,11 +27,48 @@
 	<select id="selectUserInfo" parameterType="String" resultMap="UserVO">
 		<![CDATA[ 
 			SELECT 
-				A.user_id, A.name, B.dept_nm 
+				A.user_id, A.name, B.dept_nm,A.job, A.dept_cd, A.phone, A.email
 			FROM 
 				TB_USER A INNER JOIN TB_DEPT_CD B ON A.dept_cd = B.dept_cd
 			WHERE
 				user_id = #{userId}
 		]]>
 	</select>
+	
+	<insert id="insertUser" parameterType="userMap"> 
+		<![CDATA[
+			INSERT INTO tb_user
+				(user_id,pwd,name,dept_cd,job,phone,email)
+			VALUES
+				(#{userId},#{pwd},#{name},#{deptCd},#{job},#{phone},#{email})
+		
+		
+		
+		]]>
+	</insert>
+	
+	<update id="updateUser" parameterType="userMap">
+		<![CDATA[
+			UPDATE tb_user
+			SET
+				pwd=#{pwd},
+				name=#{name},
+				dept_cd=#{deptCd},
+				job=#{job},
+				phone=#{phone},
+				email=#{email}
+			WHERE
+				user_id=#{userId}
+			
+		]]>
+	</update>
+	
+	<delete id="deleteUser" parameterType="String">
+		<![CDATA[
+			DELETE FROM tb_user
+			WHERE
+				user_id=#{userId}
+		]]>
+	
+	</delete>
 </mapper>
