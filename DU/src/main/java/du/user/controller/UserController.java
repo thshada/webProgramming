@@ -28,7 +28,7 @@ public class UserController {
 			return "main.jsp";
 		}
 	}
-	
+	 
 	@RequestMapping("/signUpPage.do")
 	public String signUpPage() {
 		return "user/signUp.jsp";

@@ -85,6 +85,8 @@ window.onload=function(){
 		var pwdCheck=document.getElementById("pwdCheckInput").value;
 		
 		if(pwd==pwdCheck){
+			
+			
 			document.getElementById("userInfoForm").submit();
 			
 		}else{
