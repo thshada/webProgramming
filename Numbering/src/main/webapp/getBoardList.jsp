@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import = "java.util.List" %>
 <%@page import = "com.ync.biz.board.impl.BoardDAO" %>
 <%@page import = "com.ync.biz.board.BoardVO" %>
@@ -8,7 +9,17 @@
 <%
 // getBoardList.do 에서 "boardList" 저장한 데이터를 가져온다.
 //	List<BoardVO> boardList = (List) session.getAttribute("boardList");
-%>    
+response.setHeader("pragma","no-cache");
+response.setDateHeader("expires",0);
+response.setHeader("cache-Control","no-cache");
+%> 
+
+<%!
+LocalDate now = LocalDate.now();
+
+int dayOfYear=now.getYear();
+
+%>   
 <!DOCTYPE html>
 <html>
 
@@ -97,18 +108,7 @@
                         </button>
                     </form>
                     
-               		<form action="getBoardList.do" id="searchform" method="post" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                              <input type="text" name="searchKeyword" id="searchKeyword" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" id="searchbutton" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                   
-                    </form>                    
+               		      
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -161,29 +161,39 @@
                                     <thead>
                                         <tr>
                                             <th>번호</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>등록일</th>
-                                            <th>조회수</th>
+                                            <th>수신</th>
+                                            <th>참조</th>
+                                            <th>건명</th>
+                                            <th>견적금액</th>
+                                            <th>담당자</th>
+                                            <th>대금지불조건</th>
+                                            <th>견적일자</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>번호</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>등록일</th>
-                                            <th>조회수</th>
+                                            <th>수신</th>
+                                            <th>참조</th>
+                                            <th>건명</th>
+                                            <th>견적금액</th>
+                                            <th>담당자</th>
+                                            <th>대금지불조건</th>
+                                            <th>견적일자</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-										<c:forEach items="${boardList }" var="board">
+										<c:forEach items="${boardList}" var="board">
 										<tr>
-											<td>${board.getSeq()}</td>
-											<td align="left"><a href="getBoard.do?seq=${board.getSeq()}">${board.getTitle()}</a></td>
-											<td>${board.getWriter()}</td>
-											<td>${board.getRegDate()}</td>
-											<td>${board.getCnt()}</td>
+											<td>Bumil_<%=dayOfYear%>_${board.getNum()}</td>
+											<td align="left"><a href="getBoard.do?seq=${board.getSeq()}">${board.getReception()}</a></td>
+											<td>${board.getReference()}</td>
+											<td>${board.getSubject()}</td>
+											<td>${board.getMoney()}</td>
+											<td>${board.getManager()}</td>
+											<td>${board.getMoneyif()}</td>
+											<td>${board.getDate()}</td>
 										</tr>
 										</c:forEach>                                   
                                     </tbody>

@@ -4,6 +4,11 @@
     pageEncoding="UTF-8"%>
 
 <%
+response.setHeader("pragma","no-cache");
+response.setDateHeader("expires",0);
+response.setHeader("cache-Control","no-cache");
+%>
+
 	//1. 사용자 입력 정보 추출
 	String id = request.getParameter("id");
 	String password = request.getParameter("password");

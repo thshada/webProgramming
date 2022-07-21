@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardDAO">
+	<resultMap type="boardMap" id="BoardVO">
+		<id property="seq" column="seq"/>
+		<result property="reference"      column="reference"/>
+		<result property="date" 	  column="date"/>
+		<result property="manager"   column="manager"/>
+		<result property="money" column="money"/>
+		<result property="subject" column="subject"/>
+		<result property="filename" column="filename"/>
+		<result property="uploadFile" column="uploadfile"/>
+		<result property="upload" column="upload"/>
+		<result property="cnt" column="cnt"/>
+		<result property="searchKeyword" column="searchkeyword"/>
+		<result property="moneyif" column="moneyif"/>
+		<result property="num" column="num"/>
+
+	</resultMap>	
+	
+	<insert id="insertBoard">
+		insert into numbering(reception,reference,subject,money,manager,date,upload,moneyif)
+		 values(#{reception},#{reference},#{subject},#{money},#{manager},#{date},#{upload},#{moneyif});
+	</insert>
+	
+	<update id="updateBoard">
+		update numbering set cnt=cnt+1 where seq=#{seq}
+	
+	</update>
+
+	<delete id="deleteBoard">
+	
+		delete board where seq=#{seq}
+	</delete>
+	
+	<select id="getBoard" resultType="boardMap">
+	 	select * from numbering where seq=#{seq}
+		
+	</select>
+	
+	<select id="getBoardList" resultType="boardMap">
+		SELECT @num:=@num+1 AS num,reception,reference,subject,money,manager,moneyif,date FROM (SELECT @num:=0)AS n,numbering ORDER BY DATE
+	
+		
+	</select>
+	
+	
+	
+	
+
+</mapper>

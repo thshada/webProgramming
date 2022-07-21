@@ -13,7 +13,7 @@ public class JDBCUtil {
 	public static Connection	getConnection() {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mariadb://localhost:3307/test22","root","1234");
+			return DriverManager.getConnection("jdbc:mariadb://localhost:3307/test33","root","1234");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

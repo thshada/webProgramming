@@ -5,7 +5,13 @@
     
 <%
 	//BoardVO board = (BoardVO) session.getAttribute("board");
+response.setHeader("pragma","no-cache");
+response.setDateHeader("expires",0);
+response.setHeader("cache-Control","no-cache");
+
 %>    
+
+
 <!DOCTYPE html>
 <html>
 
@@ -141,28 +147,47 @@
                         <div class="card-body">
  							<!-- 본문 들어갈 자리 -->
 							<form id="updateform" action="updateBoard.do" method="post">
-							<input type="hidden" name="seq" value="${board.getSeq()}" />							
+							 								
 							  <div class="form-group">
-							    <label for="formtitle">제   목</label>
-							    <input type="text" class="form-control" id="formtitle" name="title" value="${board.getTitle()}" />
+							    <label for="formtitle">수신</label>
+							    <input type="text" class="form-control" id="formreception" name="reception" value="${board.getReception()}" />
 							  </div>
 							  <div class="form-group">
-							    <label for="formwriter">작 성 자</label>
-							    <input type="text" class="form-control" id="formwriter" name="writer" value="${board.getWriter()}" readonly />
+							    <label for="formwriter">참조</label>
+							    <input type="text" class="form-control" id="formreference" name="reference" value="${board.getReference()}"  />
 							  </div>
 							  <div class="form-group">
-							    <label for="formcontent">내 용</label>
-							    <textarea class="form-control" name ="content" id="formcontent" rows="5">${board.getContent()}</textarea>
-							    <img src="/biz/resources/upload/${board.getFilename()}" />
+							    <label for="formcontent">건명</label>
+							    <textarea class="form-control" name ="subject" id="formsubject" rows="5">${board.getSubject()}</textarea>
+							    
 							  </div>							  							  
 							  <div class="form-group">
-							    <label for="formregdate">등 록 일</label>
-							    <input type="text" class="form-control" id="formregdate" name="regdate" value="${board.getRegDate()}" readonly />
+							    <label for="formregdate">견적금액 </label>
+							    <input type="text" class="form-control" id="formregdate" name="money" value="${board.getMoney()}"/>
+							   	<input type="hidden" id="vatif" name="vat" value="${board.getVat()}"/>
+							   	<div id="_vat">
+							  
 							  </div>
+							  </div>
+							  
 							  <div class="form-group">
-							    <label for="formcnt">조 회 수</label>
-							    <input type="text" class="form-control" id="formcnt" name="regdate" value="${board.getCnt()}" readonly />
-							  </div>							  
+							    <label for="formcnt">담당자</label>
+							    <input type="text" class="form-control" id="formcnt" name="manager" value="${board.getManager()}"  />
+							  </div>
+							  	 <div class="form-group">
+							    <label for="formwriter">대금 지불 조건</label>
+							    <input type="text" class="form-control" id="formsmoneyif" name="moneyif" value="${board.getMoneyif()}"  />
+							  </div>			
+							  <div class="form-group">
+							    <label for="formcnt">견적일자</label>
+							    <input type="date" class="form-control" id="Date" name="date" value="${board.getDate()}" readonly  />
+							  </div>	
+							  <div class="form-group">
+							    <label for="formcnt">견적서</label>
+							    <iframe src="${pageContext.request.contextPath}/resources/upload/${board.getFilename()}" style="width:700px;height:700px;"></iframe> 
+							    
+							  </div>
+							  <input type="hidden" name="seq" value="${board.getSeq()}" />									  
 							  <button type="submit" class="btn btn-primary">글 수정</button>
 							</form> 							
                         </div>
@@ -231,26 +256,75 @@
 		$("#updateform").on("submit",function(){
 			return valchk();
 		});
+	
 	});
 	
-	function valchk(){
-		var formtitle = $("#formtitle").val();
-		var formcontent = $("#formcontent").val();
-		
-		if(!formtitle){
-			alert("제목을 입력하세요.");
-			$("#formtitle").focus();
-			return false;
+	
+	window.onload=function vat(){
+		var vat=document.getElementById("vatif").value;
+		if(vat=="vato"){
+			
+			  var str = "(VAT포함) ";
+		      document.getElementById('_vat').innerHTML=str;
+		}
+		else{
+			var str="(VAT미포함)";
+			document.getElementById('_vat').innerHTML=str;
 		}
 		
-		if(!formcontent){
-			alert("본문 내용을 입력하세요.");
-			$("#formcontent").focus();
-			return false;
-		}		
-
-		return true;
 	}
+	
+	
+	   function valchk(){
+			var formreception = $("#formreception").val();
+			var formreference = $("#formreference").val();
+			var formem = $("#formem").val();
+			var formsubject = $("#formsubject").val();
+			var formwriter = $("#formwriter").val();
+			var formem=$("#formem").val();
+			var formDate = $("#formDate").val();
+			var formsmoneyif = $("#formsmoneyif").val();
+			
+			if(!formreception){
+				alert("수신  입력하세요");
+				$("#formreception").focus();
+				return false;
+			}
+			
+			if(!formreference){
+				alert("참조 입력하세요");
+				$("#formreference").focus();
+				return false;
+			}		
+			if(!formsubject){
+				alert("건명 입력하세요.");
+				$("formsubject").focus();
+				return false;
+			}
+			if(!formem){
+				alert("견적 금액 입력하세요.");
+				$("formem").focus();
+				return false;
+			}
+			if(!formwriter){
+				alert("작성자 입력하세요");
+				$("formwriter").focus();
+				return false;
+			}
+			if(!formDate){
+				alert("작성일자 입력하세요");
+				$("formDate").focus();
+				return false;
+			}
+			if(!formsmoneyif){
+				alert("대금지불조건 입력하세요");
+				$("formsmoneyif").focus();
+				return false;
+			}
+
+			return true;
+		}
+	  
 	
 </script>
 

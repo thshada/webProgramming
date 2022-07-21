@@ -1,13 +1,18 @@
 package com.ync.view.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ync.biz.user.UserVO;
 import com.ync.biz.user.impl.UserDAO;
+
+
 
 @Controller
 public class LoginController  {
@@ -31,7 +36,8 @@ public class LoginController  {
 			return "getBoardList.do";
 		}else return "login.jsp";
 	}	
-
+	
+	
 	/*
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {

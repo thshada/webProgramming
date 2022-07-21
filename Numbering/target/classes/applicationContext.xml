@@ -13,6 +13,7 @@
 	
 	<bean id="log" class="com.ync.biz.common.Log4jAdvice" />
 	
+
 	
 	<aop:config>
 		<aop:pointcut id="allPointcut" expression="execution(* com.ync.biz..*Impl.*(..))" />
