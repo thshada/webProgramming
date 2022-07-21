@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+header{
+	display:flex;
+	justify-content:space-between;
+	border-bottom:1px solid #72c524;
+	margin-bottom:10px;
+}
+
+.userInfoDiv {
+	text-align:right;
+	font-size:19px;
+	margin:auto 0;
+	
+}
+
+.infoUL{
+	margin: auto 0;
+}
+.infoUL > li >a{
+	text-decoration:none;
+	color:black;
+}
+.LogoDiv{
+	width:100px;
+	margin-bottom:5px;
+}
+.LogoDiv > img{
+	width:100%;
+}

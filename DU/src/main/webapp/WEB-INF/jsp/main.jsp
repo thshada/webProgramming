@@ -6,16 +6,22 @@
 
 <html>
 <head>
+  
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Main Page</title>
 </head>
 <body>
-	<h1>[<c:out value="${USER.name}"/>]님 반갑습니다~.</h1>
-	<h1>[<c:out value="${USER.name}"/>]님의 아이디는[<c:out value="${USER.userId}"/>]입니다.</h1>
-	<h1>[<c:out value="${USER.name}"/>]님의 부서는[<c:out value="${USER.deptNm}"/>]입니다.</h1>
+	<header>
+		<jsp:include page="/WEB-INF/jsp/layout/Header.jsp"></jsp:include>
+		
+	</header>	
 	
-	<button type="button" style="right" onclick="window.location.href='logout.do'">로그아웃</button>
-	<button type="button" style="right" onclick="window.location.href='userInfoConfirmPage.do'">내정보</button>
+	<img src="images/11.png" style="width:200px; height:200px;"onclick="window.location.href='boardListPage.do'">
+	
+	
+	
+	
+	
 	
 	
 </body>
