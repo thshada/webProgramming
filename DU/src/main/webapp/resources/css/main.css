@@ -28,3 +28,10 @@ header{
 .LogoDiv > img{
 	width:100%;
 }
+#filterDiv{
+    display: flex;
+    justify-content: space-between;
+	
+	
+}
+

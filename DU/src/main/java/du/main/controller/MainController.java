@@ -48,7 +48,16 @@ public class MainController {
 		 
 	}
 	
-	
+	@RequestMapping("/mainPage.do")
+	public String mainPage(HttpSession session) {
+		
+		if(session.getAttribute("USER")==null) {
+			return "redirect:/loginPage.do";
+			
+		}
+		return "main.jsp";
+		
+	}
 	
 	
 	

@@ -2,10 +2,10 @@ package du.common;
 
 public class Pagination {
 	//한 페이지 당 보여질 목록 갯수
-	private int listSize=3;
+	private int listSize=10;
 	
 	//한 페이지 범위에 보여질 페이지 갯수
-	private int rangeSize=3;
+	private int rangeSize=2;
 	
 	//현재 페이지
 	private int page;
@@ -20,7 +20,9 @@ public class Pagination {
 	
 	//각 페이지 범위의 시작 번호
 
+	
 
+	
 
 	private int startPage;
 	//각 페이지 범위의 끝 번호
@@ -121,6 +123,9 @@ public class Pagination {
 	public void setPageCnt(int pageCnt) {
 		this.pageCnt = pageCnt;
 	}
+	
+
+
 
 	public void pageInfo(int page,int range,int listCnt) {
 		this.page=page;
